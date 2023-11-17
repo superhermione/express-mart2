@@ -1,0 +1,98 @@
+
+
+  <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">ExpressMart</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="index">Home</a>
+            <a class="nav-link" href="products">Products</a>
+            <a class="nav-link active" href="categories">Categories</a>
+            <a class="nav-link" href="customers">Customers</a>
+            <a class="nav-link" href="employees">Employees</a>
+            <a class="nav-link" href="transactions">Transactions</a>
+            <a class="nav-link" href="itemsInTransaction">Transaction Details</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="py-5 text-center header-container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Categories</h1>
+        </div>
+      </div>
+    </section>
+ 
+      <table id="category-table">
+          <thead>
+              <tr>
+                  {{#each data.[0]}}
+                  <th>
+                      {{@key}}
+                  </th>
+                  {{/each}}
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              {{#each data}}
+              <tr data-value={{this.categoryID}}>
+                  <td>{{this.categoryID}}</td>
+                  <td>{{this.categoryName}}</td>
+                  <td><button onclick="deleteCategory({{this.categoryID}})">Delete</button></td>
+              </tr>
+              {{/each}}
+          </tbody>
+      </table>
+
+      <p>&nbsp;</p>
+ 
+      <form id="add-category-form">
+        <legend><strong>Add Category</strong></legend>
+        <fieldset class="fields">
+          <label> Category Name </label> 
+          <input type="text" name="categoryName" id="categoryName">
+        </fieldset>
+        <input class="btn btn-outline-secondary" type="submit">
+    </form> 
+     <p>&nbsp;</p>
+
+      <div id="update">
+        <form id="updateCategory">
+          <legend><strong>Update Category</strong></legend>
+          <fieldset class="fields">
+            <label for="inputCategoryIDUpdate">ID: </label>
+            <select name="inputCategoryIDUpdate" id="inputCategoryIDUpdate">
+              <option>Select CategoryID</option>
+              {{#each data}}
+                <option value="{{this.categoryID}}">{{this.categoryID}}</option>
+              {{/each}}
+            </select>
+          </fieldset>
+          <fieldset class="fields">
+            <label for="inputCategoryNameUpdate"> Category Name </label> 
+            <input type="text" name="inputCategoryNameUpdate" id="inputCategoryNameUpdate">
+          </fieldset>
+
+          <input class="btn btn-outline-secondary" type="submit" value="Save Category">
+        </form> 
+      </div><!-- update -->
+      <p>&nbsp;</p>
+
+
+  </main>
+
+
+<script src="./js/add_category.js"></script>
+<script src="./js/delete_category.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/update_category.js"></script>
+
